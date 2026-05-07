@@ -12,6 +12,16 @@ const ITEM_NAME_COLUMN = "Item Name";
 const LOCATION_COLUMN = "Current Location";
 const RECEIPT_SOURCE_COLUMN = "Receipt Source";
 
+function normalizePrivateKey(value: string): string {
+  const normalized = value.includes("\\n") ? value.replace(/\\n/g, "\n") : value;
+
+  if (!normalized.includes("BEGIN PRIVATE KEY") || !normalized.includes("END PRIVATE KEY")) {
+    throw new Error("GOOGLE_PRIVATE_KEY is not in a valid service-account key format");
+  }
+
+  return normalized;
+}
+
 function getEnv(name: string): string {
   const value = process.env[name];
   if (!value) {
@@ -23,7 +33,7 @@ function getEnv(name: string): string {
 
 async function getWorksheet(tabName: string) {
   const serviceAccountEmail = getEnv("GOOGLE_SERVICE_ACCOUNT_EMAIL");
-  const privateKey = getEnv("GOOGLE_PRIVATE_KEY").replace(/\\n/g, "\n");
+  const privateKey = normalizePrivateKey(getEnv("GOOGLE_PRIVATE_KEY"));
   const spreadsheetId = getEnv("GOOGLE_SHEET_ID");
 
   const auth = new JWT({

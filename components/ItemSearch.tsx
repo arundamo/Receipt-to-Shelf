@@ -61,7 +61,7 @@ export function ItemSearch() {
       <ul className="mt-4 divide-y divide-slate-200 rounded-lg border border-slate-200 bg-slate-50">
         {results.map((result, index) => (
           <li
-            key={`${result.itemName}-${result.currentLocation}-${index}`}
+            key={index}
             className="grid grid-cols-2 gap-2 px-3 py-2 text-sm"
           >
             <span className="font-medium text-slate-800">{result.itemName}</span>
