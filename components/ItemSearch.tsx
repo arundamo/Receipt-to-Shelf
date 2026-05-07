@@ -43,12 +43,14 @@ export function ItemSearch() {
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <input
+          aria-label="Sheet tab name"
           value={tabName}
           onChange={(event) => setTabName(event.target.value)}
           className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
           placeholder="Sheet tab name"
         />
         <input
+          aria-label="Search item name"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           className="rounded-lg border border-slate-300 px-3 py-2 text-sm"

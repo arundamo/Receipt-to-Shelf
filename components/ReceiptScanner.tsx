@@ -151,6 +151,7 @@ export function ReceiptScanner() {
 
       <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto]">
         <input
+          aria-label="Sheet tab name"
           value={tabName}
           onChange={(event) => setTabName(event.target.value)}
           className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
@@ -190,6 +191,7 @@ export function ReceiptScanner() {
 
               <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_auto]">
                 <input
+                  aria-label={`Location for ${item.name}`}
                   list={`locations-${index}`}
                   value={item.location}
                   onChange={(event) => updateLocation(index, event.target.value)}
