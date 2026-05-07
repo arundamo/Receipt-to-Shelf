@@ -183,7 +183,6 @@ export function ReceiptScanner() {
             >
               <div className="flex flex-wrap items-center gap-3">
                 <span className={checklistIconClasses(item.saved)}>
-
                   {item.saved ? "✓" : "○"}
                 </span>
                 <span className="font-medium text-slate-900">{item.name}</span>
