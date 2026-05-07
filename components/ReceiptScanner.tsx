@@ -20,6 +20,12 @@ const DEFAULT_LOCATIONS = [
   "Snack Drawer",
 ];
 
+function checklistIconClasses(saved: boolean) {
+  return saved
+    ? "inline-flex h-5 w-5 items-center justify-center rounded-full border border-emerald-500 bg-emerald-100 text-xs text-emerald-700"
+    : "inline-flex h-5 w-5 items-center justify-center rounded-full border border-slate-300 bg-white text-xs text-slate-500";
+}
+
 async function mockReceiptOcr(file: File): Promise<string[]> {
   await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -176,9 +182,8 @@ export function ReceiptScanner() {
               className="rounded-xl border border-slate-200 bg-slate-50 p-4"
             >
               <div className="flex flex-wrap items-center gap-3">
-                <span
-                  className={`inline-flex h-5 w-5 items-center justify-center rounded-full border text-xs ${item.saved ? "border-emerald-500 bg-emerald-100 text-emerald-700" : "border-slate-300 bg-white text-slate-500"}`}
-                >
+                <span className={checklistIconClasses(item.saved)}>
+
                   {item.saved ? "✓" : "○"}
                 </span>
                 <span className="font-medium text-slate-900">{item.name}</span>
